@@ -1,0 +1,32 @@
+javascript:
+  var apiKey = "#{@api_key}";
+  var sessionId = "#{@session_id}";
+  var token = "#{@token}";
+
+  // Initialize an OpenTok Session object
+  var session = TB.initSession(sessionId);
+
+  // Initialize a Publisher, and place it into the element with id="publisher"
+  var publisher = TB.initPublisher(apiKey, 'publisher');
+
+  // Attach event handlers
+  session.on({
+    sessionConnected: function(event) { session.publish(publisher); },
+    streamCreated: function(event) {
+      var subContainer = document.createElement('div');
+      subContainer.id = 'stream-' + event.stream.streamId;
+      document.getElementById('subscribers').appendChild(subContainer);
+      session.subscribe(event.stream, subContainer);
+    }
+  });
+
+  // Connect to the Session using the 'apiKey' of the application and a 'token' for permission
+  session.connect(apiKey, token);
+
+p#notice = notice
+
+.title = @session.title
+.leave = link_to 'Leave', sessions_path
+
+#publisher
+#subscribers

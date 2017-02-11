@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'slim-rails'
+gem 'opentok'
 
 group :development, :test do
   gem 'byebug', platform: :mri
