@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  user: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: tokbox-demo_development
+
+test:
+  <<: *default
+  database: tokbox-demo_test
+
+production:
+  <<: *default
+  database: tokbox-demo_production
+  username: tokbox-demo
+  password: <%= ENV['TOKBOX-DEMO_DATABASE_PASSWORD'] %>
