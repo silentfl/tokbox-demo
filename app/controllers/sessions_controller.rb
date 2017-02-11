@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   # POST /sessions
   def create
     @session = Session.new(session_params)
-    #byebug
+
     @session.session_id = @@opentok.create_session
 
     if @session.save
